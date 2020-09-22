@@ -14,7 +14,7 @@ test('练习02 中间件实现', () => {
         }
     ]
     const { compose } = require('../index')
-    compose(middlewares)()
+    let arr = compose(middlewares)()
     
     const calls = mockFn.mock.calls
     expect(calls.length).toBe(4);
