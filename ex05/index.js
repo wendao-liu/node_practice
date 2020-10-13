@@ -1,16 +1,18 @@
-const {EventEmitter} = require('events')
-module.exports = class Connection {
-    // ##BEGIN## 代码已加密
-gywgywgywgywgdqgdUgdvgdegdwgdmgd=gdqgdwgdUgdmgywgqRgqkgRd
-gywgywgywgywgywgywgywgywgdwgdkgdngdegqDgd9gRggd9gdvgdwgywgcRgywgdvgd9gRygywgcUgRggd9gdvgdwgcUgdDgdngdwgdwgd9gdmgqRgqkgc9gyw
-gywgywgywgywgRk
+const { EventEmitter } = require('events')
+module.exports = function Connection() {
+    let callList = [];
+    function onConn(call) {
+        callList.push(call);
+    }
 
-gywgywgywgywgdqgdUgdvgdvgd9gdqgdwgdngdUgdvgqRgdDgdegdRgqkgywgRd
-gywgywgywgywgywgywgywgywgdwgdkgdngdegqDgd9gRggd9gdvgdwgqDgd9gdDgdngdwgqRgqdgdqgdUgdvgdvgqdgqlgdDgdegdRgqk
-gywgywgywgywgRk
+    function connection(str) {
+        callList.forEach((cal) => {
+            cal(str);
+        })
+    }
 
-gywgywgywgywgdUgdvgcDgdUgdvgdvgqRgdqgdygqkgywgRd
-gywgywgywgywgywgywgywgywgdwgdkgdngdegqDgd9gRggd9gdvgdwgqDgdUgdvgqRgqdgdqgdUgdvgdvgqdgqlgdqgdygqk
-gywgywgywgywgRk
-    // ##END##
+    return ({
+        onConn,
+        connection,
+    })
 }
